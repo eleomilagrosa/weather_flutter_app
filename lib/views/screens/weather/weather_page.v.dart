@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:weather_flutter_app/model/weather_forecast.dart';
+import 'package:weather_flutter_app/model/weather_forecast.m.dart';
 import 'package:weather_flutter_app/views/widgets/custom_app_bar.dart';
 
 class WeatherPageView extends StatefulWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:weather_flutter_app/model/service/weather.s.dart';
-import 'package:weather_flutter_app/model/weather_forecast.dart';
+import 'package:weather_flutter_app/model/weather_forecast.m.dart';
 import 'package:weather_flutter_app/view_model/app_locale.vm.dart';
 import 'package:collection/collection.dart';
 

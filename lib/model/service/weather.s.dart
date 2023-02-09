@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:weather_flutter_app/constants/constant.dart';
 import 'package:weather_flutter_app/model/service/api.s.dart';
-import 'package:weather_flutter_app/model/weather_forecast.dart';
+import 'package:weather_flutter_app/model/weather_forecast.m.dart';
 import 'package:weather_flutter_app/utils/printWhenDebug.dart';
 
 class WeatherService{

@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:auth0_flutter/auth0_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:weather_flutter_app/model/city.dart';
+import 'package:weather_flutter_app/model/city.m.dart';
 import 'package:weather_flutter_app/model/storage/local_storage.dart';
 import 'package:weather_flutter_app/utils/printWhenDebug.dart';
 

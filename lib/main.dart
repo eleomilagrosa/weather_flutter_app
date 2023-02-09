@@ -6,7 +6,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_flutter_app/constants/font_family.dart';
 import 'package:weather_flutter_app/constants/routes.dart';
-import 'package:weather_flutter_app/model/weather_forecast.dart';
+import 'package:weather_flutter_app/model/weather_forecast.m.dart';
 import 'package:weather_flutter_app/view_model/app_locale.vm.dart';
 import 'package:weather_flutter_app/views/screens/home/home_page.v.dart';
 import 'package:weather_flutter_app/views/screens/landing/landing_page.v.dart';
