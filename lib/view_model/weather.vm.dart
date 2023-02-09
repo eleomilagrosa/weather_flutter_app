@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:weather_flutter_app/model/service/weather.s.dart';
 import 'package:weather_flutter_app/model/weather_forecast.m.dart';
-import 'package:weather_flutter_app/view_model/app_locale.vm.dart';
+import 'package:weather_flutter_app/view_model/auth.vm.dart';
 import 'package:collection/collection.dart';
 
 class WeatherViewModel extends ChangeNotifier {
 
   WeatherService weatherService = WeatherService();
-  final AppLocaleViewModel appLocaleViewModel;
+  final AuthViewModel _authViewModel;
 
-  WeatherViewModel(this.appLocaleViewModel);
+  WeatherViewModel(this._authViewModel);
 
   bool loadingWeatherForecast = false;
   Future<WeatherForecast?> getWeatherForecastByCityName(String cityName)async{

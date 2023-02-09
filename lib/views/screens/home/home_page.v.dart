@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import 'package:weather_flutter_app/constants/routes.dart';
 import 'package:weather_flutter_app/utils/printWhenDebug.dart';
-import 'package:weather_flutter_app/view_model/app_locale.vm.dart';
+import 'package:weather_flutter_app/view_model/auth.vm.dart';
 import 'package:weather_flutter_app/view_model/weather.vm.dart';
 import 'package:weather_flutter_app/views/widgets/custom_app_bar.dart';
 import 'package:weather_flutter_app/views/widgets/custom_button.dart';
@@ -20,8 +20,8 @@ class HomePageView extends StatefulWidget {
 
 class _HomePageViewState extends State<HomePageView> {
 
-  late final AppLocaleViewModel  _appLocaleViewModel = Provider.of<AppLocaleViewModel>(context);
-  late final WeatherViewModel  _weatherViewModel = WeatherViewModel( _appLocaleViewModel);
+  late final AuthViewModel  _authViewModel = Provider.of<AuthViewModel>(context);
+  late final WeatherViewModel  _weatherViewModel = WeatherViewModel( _authViewModel);
   final TextEditingController  _textEditingController = TextEditingController(text: "");
 
   @override
@@ -31,7 +31,7 @@ class _HomePageViewState extends State<HomePageView> {
           ChangeNotifierProvider<WeatherViewModel>(create: (_) =>  _weatherViewModel),
         ],
       builder: (context,_){
-        String githubUrl = "https://github.com/${_appLocaleViewModel.credentials?.user.nickname ?? ""}";
+        String githubUrl = "https://github.com/${_authViewModel.credentials?.user.nickname ?? ""}";
         return Scaffold(
           appBar: CustomAppBar.buildDefaultAppBar(context,
             logout: ()async{
@@ -59,7 +59,7 @@ class _HomePageViewState extends State<HomePageView> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text("${_appLocaleViewModel.credentials?.user.nickname ?? ""}"),
+                                Text("${_authViewModel.credentials?.user.nickname ?? ""}"),
                                 SizedBox(height: 6,),
                                 Text(githubUrl),
                               ],
@@ -116,7 +116,7 @@ class _HomePageViewState extends State<HomePageView> {
       ),
       buttonPositive: ButtonBuilder(
         "Logout", () async {
-        await _appLocaleViewModel.logout();
+        await _authViewModel.logout();
         Navigator.pop(context);
         Navigator.pushReplacementNamed(context, AppRoutes.LANDING_PAGE);
       },

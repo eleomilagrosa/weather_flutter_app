@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:weather_flutter_app/view_model/app_locale.vm.dart';
+import 'package:weather_flutter_app/view_model/auth.vm.dart';
 import 'package:weather_flutter_app/views/widgets/custom_app_bar.dart';
 import 'package:weather_flutter_app/views/widgets/custom_button.dart';
 
@@ -14,11 +14,11 @@ class LandingPageView extends StatefulWidget {
 }
 
 class _LandingPageViewState extends State<LandingPageView> {
-  late final AppLocaleViewModel  _appLocaleViewModel = Provider.of<AppLocaleViewModel>(context, listen: false);
+  late final AuthViewModel  _authViewModel = Provider.of<AuthViewModel>(context, listen: false);
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<AppLocaleViewModel>(
+    return Consumer<AuthViewModel>(
         builder: (context, _, __){
           return Scaffold(
             appBar: CustomAppBar.buildDefaultAppBar(context),
@@ -34,12 +34,12 @@ class _LandingPageViewState extends State<LandingPageView> {
                       PrimaryButton(
                         text: "Login",
                         onPressed: ()async{
-                          var isSuccess = await _appLocaleViewModel.initiateLogin();
+                          var isSuccess = await _authViewModel.initiateLogin();
                           if(isSuccess){
                             Navigator.pushReplacementNamed(context, AppRoutes.HOME_PAGE);
                           }
                         },
-                        isLoading: _appLocaleViewModel.loadingLogin,
+                        isLoading: _authViewModel.loadingLogin,
                         width: MediaQuery.of(context).size.width * .4,
                       )
                     ],
