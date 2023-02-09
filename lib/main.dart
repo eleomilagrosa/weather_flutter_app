@@ -9,8 +9,8 @@ import 'package:weather_flutter_app/constants/routes.dart';
 import 'package:weather_flutter_app/model/weather_forecast.m.dart';
 import 'package:weather_flutter_app/view_model/app_locale.vm.dart';
 import 'package:weather_flutter_app/views/screens/home/home_page.v.dart';
+import 'package:weather_flutter_app/views/screens/home/weather/weather_page.v.dart';
 import 'package:weather_flutter_app/views/screens/landing/landing_page.v.dart';
-import 'package:weather_flutter_app/views/screens/weather/weather_page.v.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
       ],
       builder: (context, _){
         return MaterialApp(
-            title: 'Flutter Weather App Demo',
+            title: 'Flutter Weather Forecast App Demo',
             debugShowCheckedModeBanner: false,
             theme: FlexThemeData.light(
               fontFamily: AppFontFamily.inter,
