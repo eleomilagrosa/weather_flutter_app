@@ -70,7 +70,7 @@ class MyApp extends StatelessWidget {
                 case AppRoutes.HOME_PAGE:
                   return PageTransition(child: const HomePageView(), type: PageTransitionType.rightToLeft);
                 case AppRoutes.WEATHER_PAGE:
-                  return MaterialPageRoute(builder: (_) => WeatherPageView(arg as WeatherForecast));
+                  return MaterialPageRoute(builder: (_) => WeatherPageView((arg as Map)["cityName"], arg["forecast"] as WeatherForecast));
                 case AppRoutes.LANDING_PAGE:
                 default:
                  return PageTransition(child: const LandingPageView(), type: PageTransitionType.rightToLeft);

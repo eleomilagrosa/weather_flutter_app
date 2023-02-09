@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 import 'package:weather_flutter_app/constants/routes.dart';
 import 'package:weather_flutter_app/utils/printWhenDebug.dart';
 import 'package:weather_flutter_app/view_model/app_locale.vm.dart';
@@ -30,6 +31,7 @@ class _HomePageViewState extends State<HomePageView> {
           ChangeNotifierProvider<WeatherViewModel>(create: (_) =>  _weatherViewModel),
         ],
       builder: (context,_){
+        String githubUrl = "https://github.com/${_appLocaleViewModel.credentials?.user.nickname ?? ""}";
         return Scaffold(
           appBar: CustomAppBar.buildDefaultAppBar(context,
             logout: ()async{
@@ -46,15 +48,22 @@ class _HomePageViewState extends State<HomePageView> {
                     children: [
                       SizedBox(height: 50,),
                       Card(
-                        child: Padding(
-                          padding: const EdgeInsets.all(12.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("${_appLocaleViewModel.credentials?.user.nickname ?? ""}"),
-                              SizedBox(height: 6,),
-                              Text("https://github.com/${_appLocaleViewModel.credentials?.user.nickname ?? ""}"),
-                            ],
+                        child: InkWell(
+                          onTap: ()async{
+                            if (await canLaunchUrlString(githubUrl)) {
+                              launchUrlString(githubUrl);
+                            }
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text("${_appLocaleViewModel.credentials?.user.nickname ?? ""}"),
+                                SizedBox(height: 6,),
+                                Text(githubUrl),
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -127,7 +136,10 @@ class _HomePageViewState extends State<HomePageView> {
       var weatherForecast = await  _weatherViewModel.getWeatherForecastByCityName(cityName);
       if(weatherForecast != null){
         await Navigator.pushNamed(context, AppRoutes.WEATHER_PAGE,
-            arguments: weatherForecast
+            arguments: {
+              "forecast": weatherForecast,
+              "cityName": cityName,
+            }
         );
         return true;
       }
